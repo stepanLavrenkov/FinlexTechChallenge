@@ -1,0 +1,9 @@
+{
+    "baseUrl": "https://phptravels.net/api/admin",
+    "defaultCommandTimeout": 15000,
+    "watchForFileChanges": false,
+    "env": {
+      "ADMIN_EMAIL": "admin@phptravels.com",
+      "ADMIN_PASSWORD": "demoadmin"
+    }
+}
