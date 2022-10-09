@@ -3,7 +3,13 @@
       "target": "ES6",
       "lib": ["ES6", "dom"],
       "types": ["cypress", "node"],
-      "moduleResolution": "node"
+      "esModuleInterop": true,
+      "moduleResolution": "node",
+      "baseUrl": "../",
+      "paths": {
+          "@pages": [ "./cypress/pages" ],
+          "@types/*": [ "./cypress/types/*" ]
+      },
     },
     "include": ["**/*.ts"]
 }
