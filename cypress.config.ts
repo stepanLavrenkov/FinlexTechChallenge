@@ -14,6 +14,8 @@ export default defineConfig({
       const configName = config.env.configFile || 'production';
       const fileConfig = await getConfigurationFromFile(configName);
       config.video = false;
+      config.supportFile = 'cypress/support/e2e.ts';
+      config.experimentalSessionAndOrigin = true;
 
       _.merge(config, fileConfig);
 
@@ -22,7 +24,9 @@ export default defineConfig({
       on(
         'file:preprocessor',
         createBundler({
-          plugins: [createEsbuildPlugin(config)]
+          plugins: [createEsbuildPlugin(config)],
+          target: 'ES6',
+          tsconfig: 'cypress/tsconfig.json'
         })
       );
 
@@ -31,16 +35,8 @@ export default defineConfig({
   }
 });
 
-async function getConfigurationFromFile(
-  fileName: string
-): Promise<Cypress.PluginConfigOptions> {
-  const pathToConfigFile = path.resolve(
-    'cypress',
-    'config',
-    `${fileName}.json`
-  );
+async function getConfigurationFromFile(fileName: string): Promise<Cypress.PluginConfigOptions> {
+  const pathToConfigFile = path.resolve('cypress', 'config', `${fileName}.json`);
 
-  return fs.readJSONSync(
-    pathToConfigFile
-  ) as unknown as Cypress.PluginConfigOptions;
+  return fs.readJSONSync(pathToConfigFile) as unknown as Cypress.PluginConfigOptions;
 }
