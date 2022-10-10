@@ -8,12 +8,11 @@ export default class LoginPage {
   loginAsAdmin() {
     const email = Cypress.env('ADMIN_EMAIL');
     const password = Cypress.env('ADMIN_PASSWORD');
+
     cy.session([email, password], () => {
       this.visit();
       this.login(email, password);
     });
-    // this.visit();
-    // this.login(email, password);
   }
 
   visit() {

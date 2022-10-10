@@ -9,7 +9,7 @@ export default class SettingsPage {
   setCurrencyDataAndSave(data: CurrencyData): CurrencyData {
     cy.get(selectors.currencyNameInput).type(data.name);
     cy.get(selectors.currencyCodeInput).type(data.code);
-    cy.get(selectors.currencyCodeInput).type(data.rate.toString());
+    cy.get(selectors.currencyRateInput).clear().type(data.rate);
     cy.get(selectors.currencySaveReturnButton).click();
 
     return data;
