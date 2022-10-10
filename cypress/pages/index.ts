@@ -1,9 +1,3 @@
-import LoginPage from './LoginPage';
-import SettingsPage from './SettingsPage';
-
-const pages = {
-  loginPage: new LoginPage(),
-  settingsPage: new SettingsPage()
-};
-
-export default pages;
+export { LoginPage } from './LoginPage';
+export { CurrencyPage } from './CurrencyPage';
+export { LocationPage } from './LocationsPage';

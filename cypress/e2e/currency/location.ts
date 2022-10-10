@@ -1,17 +1,5 @@
-import { When, Then, Given, DataTable, Before } from '@badeball/cypress-cucumber-preprocessor';
+import { Then, Given, Before } from '@badeball/cypress-cucumber-preprocessor';
 import { LoginPage, LocationPage } from '@pages';
-
-class Location {
-  private static locationName: string;
-
-  static setLocationName(name: string) {
-    this.locationName = name;
-  }
-
-  static getLocationName() {
-    return this.locationName;
-  }
-}
 
 Before({ tags: '@LoggedInAsAdmin' }, () => {
   LoginPage.loginAsAdmin();

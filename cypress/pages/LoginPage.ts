@@ -1,11 +1,11 @@
-export default class LoginPage {
-  login(email: string, password: string) {
+export class LoginPage {
+  static login(email: string, password: string) {
     cy.get(selectors.emailInput).filter(':visible').type(email, { force: true });
     cy.get(selectors.passwordInput).filter(':visible').type(password, { force: true });
     cy.get(selectors.submitButton).click();
   }
 
-  loginAsAdmin() {
+  static loginAsAdmin() {
     const email = Cypress.env('ADMIN_EMAIL');
     const password = Cypress.env('ADMIN_PASSWORD');
 
@@ -15,7 +15,7 @@ export default class LoginPage {
     });
   }
 
-  visit() {
+  static visit() {
     cy.visit('/');
   }
 }
