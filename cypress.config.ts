@@ -1,10 +1,13 @@
 import fs from 'fs-extra';
 import path from 'path';
 import _ from 'lodash';
+import env from 'dotenv';
 import { defineConfig } from 'cypress';
 import createBundler from '@bahmutov/cypress-esbuild-preprocessor';
 import { addCucumberPreprocessorPlugin } from '@badeball/cypress-cucumber-preprocessor';
 import createEsbuildPlugin from '@badeball/cypress-cucumber-preprocessor/esbuild';
+
+env.config();
 
 export default defineConfig({
   e2e: {
@@ -16,6 +19,10 @@ export default defineConfig({
       config.video = false;
       config.supportFile = 'cypress/support/e2e.ts';
       config.experimentalSessionAndOrigin = true;
+      config.env = {
+        ADMIN_EMAIL: process.env.ADMIN_EMAIL,
+        ADMIN_PASSWORD: process.env.ADMIN_PASSWORD
+      };
 
       _.merge(config, fileConfig);
 
