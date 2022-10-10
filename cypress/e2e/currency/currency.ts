@@ -15,8 +15,6 @@ class Currency {
   }
 }
 
-Object.assign(this, new Currency());
-
 Before({ tags: '@LoggedInAsAdmin' }, () => {
   pages.loginPage.loginAsAdmin();
 });
@@ -72,15 +70,15 @@ Then('deleted currencies should be removed from the table', () => {
 Then('the currency should exist in the table', () => {
   const currencyName = Currency.getCurrencyData().name;
   pages.settingsPage.findCurrencyByData(currencyName).should('exist');
+
   pages.settingsPage.deleteCurrency(currencyName);
 });
 
 Then('the currency data should be updated in the table', () => {
   const currencyData = Currency.getCurrencyData();
 
-  pages.settingsPage.findCurrencyByData(currencyData.code).should('exist');
-  pages.settingsPage.findCurrencyByData(currencyData.name).should('exist');
-  pages.settingsPage.findCurrencyByData(currencyData.rate).should('exist');
+  pages.settingsPage.findCurrencyByData(currencyData.name).parent().contains(currencyData.code).should('exist');
+  pages.settingsPage.findCurrencyByData(currencyData.name).parent().contains(currencyData.rate).should('exist');
 
   pages.settingsPage.deleteCurrency(currencyData.code);
 });
